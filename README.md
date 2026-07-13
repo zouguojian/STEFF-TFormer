@@ -3,7 +3,7 @@
 STEFF-Former is a PyTorch implementation for traffic forecasting with an external spatio-temporal embedding field. The repository contains two complementary workflows:
 
 1. `AlphaTraffic.py` trains an AlphaTraffic Foundation encoder and exports a weekly spatio-temporal template field.
-2. `main.py` trains or evaluates `ThreeSTBLN`, a supervised traffic forecasting model that consumes the exported weekly field as prior knowledge.
+2. `main.py` trains or evaluates `STEFFTFormer`, a supervised traffic forecasting model that consumes the exported weekly field as prior knowledge.
 
 The expected temporal resolution is 5 minutes, so one day contains `288` slots and one week contains `7 x 288 = 2016` slots.
 
@@ -12,9 +12,9 @@ The expected temporal resolution is 5 minutes, so one day contains `288` slots a
 ```text
 .
 ├── AlphaTraffic.py        # AlphaTraffic Foundation training and weekly field generation
-├── main.py                # ThreeSTBLN training and testing entry point
+├── main.py                # STEFFTFormer training and testing entry point
 ├── model/
-│   └── model.py           # ThreeSTBLN model definition
+│   └── model.py           # STEFFTFormer model definition
 ├── data/                  # Dataset directory
 ├── results/               # Suggested output directory
 └── README.md
@@ -58,7 +58,7 @@ X[..., 2] = day-of-week index, usually in [0, 6]
 
 Only the traffic channel `X[..., 0]` is standardized. Calendar channels are kept in their original integer slot format.
 
-### ThreeSTBLN Input
+### STEFFTFormer Input
 
 `main.py` expects `load_dataset(args)` from `utils_.until` to return:
 
@@ -157,9 +157,9 @@ The saved array has shape:
 [7, 288, N, emb_dim]
 ```
 
-## Workflow 2: Train ThreeSTBLN for Traffic Forecasting
+## Workflow 2: Train STEFFTFormer for Traffic Forecasting
 
-Run `main.py` for supervised forecasting. The model loads data through `utils_.until.load_dataset`, builds `ThreeSTBLN`, and trains with masked MAE on `pred_future`.
+Run `main.py` for supervised forecasting. The model loads data through `utils_.until.load_dataset`, builds `STEFFTFormer`, and trains with masked MAE on `pred_future`.
 
 Example for PEMS-BAY:
 
@@ -303,9 +303,9 @@ truth
 
 Its main purpose in this repository is to produce the weekly embedding prior `weekly_template_field_4d`.
 
-### ThreeSTBLN
+### STEFFTFormer
 
-`ThreeSTBLN` consumes:
+`STEFFTFormer` consumes:
 
 ```text
 X: [B, P, N, 3]

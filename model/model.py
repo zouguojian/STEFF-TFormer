@@ -150,7 +150,7 @@ class TemporalAttention(nn.Module):
         return self.ff(value)
 
 
-class ThreeSTBLN(nn.Module):
+class STEFFTFormer(nn.Module):
     """
     输入:
         X: [B, P, N, 3]

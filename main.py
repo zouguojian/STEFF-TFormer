@@ -1,6 +1,6 @@
 import copy
 import random
-from model.model import ThreeSTBLN
+from model.model import STEFFTFormer
 import numpy as np
 import os
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
@@ -525,7 +525,7 @@ if __name__ == "__main__":
     # --------------------------------------------------------
     # 模型
     # --------------------------------------------------------
-    model = ThreeSTBLN(args, mean, std).to(device)
+    model = STEFFTFormer(args, mean, std).to(device)
 
     total_num = sum([param.nelement() for param in model.parameters()])
     print('Total params num: {}'.format(total_num))
