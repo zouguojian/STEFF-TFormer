@@ -1,6 +1,6 @@
-# STEFF-Former
+# STEFF-TFormer
 
-STEFF-Former is a PyTorch implementation for traffic forecasting with an external spatio-temporal embedding field. The repository contains two complementary workflows:
+STEFF-TFormer is a PyTorch implementation for traffic forecasting with an external spatio-temporal embedding field. The repository contains two complementary workflows:
 
 1. `AlphaTraffic.py` trains an AlphaTraffic Foundation encoder and exports a weekly spatio-temporal template field.
 2. `main.py` trains or evaluates `STEFFTFormer`, a supervised traffic forecasting model that consumes the exported weekly field as prior knowledge.
